@@ -1,6 +1,7 @@
 package com.andres.ceiba.presentation.viewmodels
 
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
@@ -10,6 +11,8 @@ import com.andres.ceiba.domain.model.users.UsersItem
 import com.andres.ceiba.domain.use_cases.CeibaUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -19,12 +22,16 @@ class CeibaViewModel @Inject constructor(
 ) : ViewModel() {
 
     var isLoading by mutableStateOf(false)
+    var usersDB = mutableStateListOf<UsersItem>()
+    var postsDB = mutableStateListOf<PostsItem>()
     private var job: Job = Job()
 
     init {
         getUser()
         getPosts()
         getPostsByUserId(1)
+        getUserDB()
+        getPostDB()
     }
 
     fun insertUsers(list: ArrayList<UsersItem>) {
@@ -36,6 +43,23 @@ class CeibaViewModel @Inject constructor(
     fun insertPosts(list: ArrayList<PostsItem>) {
         viewModelScope.launch {
             ceibaUseCases.insertPostsDBUseCase(list)
+        }
+    }
+
+    fun getUserDB() {
+        viewModelScope.launch {
+            ceibaUseCases.getUsersDBUseCase()
+                .onEach { userItemList ->
+                    usersDB.addAll(userItemList)
+                }.launchIn(viewModelScope)
+        }
+    }
+
+    fun getPostDB() {
+        viewModelScope.launch {
+            ceibaUseCases.getPostsDBUseCase().onEach { postItemsList ->
+                postsDB.addAll(postItemsList)
+            }.launchIn(viewModelScope)
         }
     }
 

@@ -12,7 +12,7 @@ import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 @Composable
 fun CeibaNavHost(
     navController: NavHostController = rememberAnimatedNavController(),
-    startDestination: String = Screen.SplashScreen.route,
+    startDestination: String = Screen.MainScreen.route,
 ) {
     AnimatedNavHost(
         navController = navController,
