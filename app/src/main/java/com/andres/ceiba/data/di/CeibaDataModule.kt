@@ -1,16 +1,23 @@
 package com.andres.ceiba.data.di
 
+import android.content.Context
+import androidx.room.Room
+import com.andres.ceiba.data.local.CeibaDatabase
 import com.andres.ceiba.data.remote.CeibaApi
-import com.andres.ceiba.data.repositories.PostsByUserIdRepositoryImpl
-import com.andres.ceiba.data.repositories.PostsRepositoryImpl
-import com.andres.ceiba.data.repositories.UsersRepositoryImpl
+import com.andres.ceiba.data.repositories.local.CeibaRepositoryLocalImpl
+import com.andres.ceiba.data.repositories.remote.GetGetPostsByUserIdRepositoryImpl
+import com.andres.ceiba.data.repositories.remote.GetGetPostsRepositoryImpl
+import com.andres.ceiba.data.repositories.remote.GetGetUsersRepositoryImpl
 import com.andres.ceiba.data.utils.Constants.BASE_URL
-import com.andres.ceiba.domain.repositories.PostsByUserIdRepository
-import com.andres.ceiba.domain.repositories.PostsRepository
-import com.andres.ceiba.domain.repositories.UsersRepository
+import com.andres.ceiba.data.utils.Constants.DATABASE_POKEMON
+import com.andres.ceiba.domain.repositories.local.CeibaRepositoryLocal
+import com.andres.ceiba.domain.repositories.remote.GetPostsByUserIdRepository
+import com.andres.ceiba.domain.repositories.remote.GetPostsRepository
+import com.andres.ceiba.domain.repositories.remote.GetUsersRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -41,20 +48,33 @@ object CeibaDataModule {
         .client(client)
         .build()
 
-
     @Singleton
     @Provides
     fun provideApi(retrofit: Retrofit): CeibaApi = retrofit.create()
 
     @Singleton
     @Provides
-    fun provideUserRepository(api: CeibaApi): UsersRepository = UsersRepositoryImpl(api)
+    fun provideUserRepository(api: CeibaApi): GetUsersRepository = GetGetUsersRepositoryImpl(api)
 
     @Singleton
     @Provides
-    fun providePostsRepository(api: CeibaApi): PostsRepository = PostsRepositoryImpl(api)
+    fun providePostsRepository(api: CeibaApi): GetPostsRepository = GetGetPostsRepositoryImpl(api)
 
     @Singleton
     @Provides
-    fun providePostsByUserIdRepository(api: CeibaApi): PostsByUserIdRepository = PostsByUserIdRepositoryImpl(api)
+    fun providePostsByUserIdRepository(api: CeibaApi): GetPostsByUserIdRepository = GetGetPostsByUserIdRepositoryImpl(api)
+
+    @Singleton
+    @Provides
+    fun provideCeibaRepositoryLocal(ceibaDatabase: CeibaDatabase): CeibaRepositoryLocal =
+        CeibaRepositoryLocalImpl(ceibaDatabase.ceibaDao)
+
+    @Singleton
+    @Provides
+    fun provideCeibaDatabase(@ApplicationContext context: Context): CeibaDatabase {
+        return Room.databaseBuilder(context, CeibaDatabase::class.java, DATABASE_POKEMON)
+            .fallbackToDestructiveMigration()
+            .allowMainThreadQueries()
+            .build()
+    }
 }

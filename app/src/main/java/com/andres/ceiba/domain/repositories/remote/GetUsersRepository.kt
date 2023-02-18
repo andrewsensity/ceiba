@@ -1,8 +1,8 @@
-package com.andres.ceiba.domain.repositories
+package com.andres.ceiba.domain.repositories.remote
 
 import com.andres.ceiba.domain.model.users.Users
 
-interface UsersRepository {
+interface GetUsersRepository {
 
     suspend fun getUsers(): Result<Users>
 }

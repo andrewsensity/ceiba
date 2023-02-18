@@ -1,18 +1,19 @@
 package com.andres.ceiba.domain.di
 
-import com.andres.ceiba.domain.repositories.PostsByUserIdRepository
-import com.andres.ceiba.domain.repositories.PostsRepository
-import com.andres.ceiba.domain.repositories.UsersRepository
+import com.andres.ceiba.domain.repositories.local.CeibaRepositoryLocal
+import com.andres.ceiba.domain.repositories.remote.GetPostsByUserIdRepository
+import com.andres.ceiba.domain.repositories.remote.GetPostsRepository
+import com.andres.ceiba.domain.repositories.remote.GetUsersRepository
 import com.andres.ceiba.domain.use_cases.CeibaUseCases
-import com.andres.ceiba.domain.use_cases.PostsByUserIdUseCase
-import com.andres.ceiba.domain.use_cases.PostsUseCase
-import com.andres.ceiba.domain.use_cases.UsersUseCase
+import com.andres.ceiba.domain.use_cases.local.*
+import com.andres.ceiba.domain.use_cases.remote.GetPostsByUserIdUseCase
+import com.andres.ceiba.domain.use_cases.remote.GetPostsUseCase
+import com.andres.ceiba.domain.use_cases.remote.GetUsersUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
 import dagger.hilt.android.scopes.ViewModelScoped
-import javax.inject.Singleton
 
 @Module
 @InstallIn(ViewModelComponent::class)
@@ -21,14 +22,20 @@ object CeibaDomainModule {
     @Provides
     @ViewModelScoped
     fun provideCeibaUseCases(
-        usersRepository: UsersRepository,
-        postsRepository: PostsRepository,
-        postsByUserIdRepository: PostsByUserIdRepository,
+        getUsersRepository: GetUsersRepository,
+        getPostsRepository: GetPostsRepository,
+        getPostsByUserIdRepository: GetPostsByUserIdRepository,
+        ceibaRepositoryLocal: CeibaRepositoryLocal,
     ): CeibaUseCases {
         return CeibaUseCases(
-            usersUseCase = UsersUseCase(usersRepository),
-            postsUseCase = PostsUseCase(postsRepository),
-            postsByUserIdUseCase = PostsByUserIdUseCase(postsByUserIdRepository)
+            getUsersUseCase = GetUsersUseCase(getUsersRepository),
+            getPostsUseCase = GetPostsUseCase(getPostsRepository),
+            getPostsByUserIdUseCase = GetPostsByUserIdUseCase(getPostsByUserIdRepository),
+            insertUsersDBUseCase = InsertUsersDBUseCase(ceibaRepositoryLocal),
+            insertPostsDBUseCase = InsertPostsDBUseCase(ceibaRepositoryLocal),
+            getUsersDBUseCase = GetUsersDBUseCase(ceibaRepositoryLocal),
+            getPostsDBUseCase = GetPostsDBUseCase(ceibaRepositoryLocal),
+            getPostByUserIdFromDBUseCase = GetPostByUserIdFromDBUseCase(ceibaRepositoryLocal)
         )
     }
 }

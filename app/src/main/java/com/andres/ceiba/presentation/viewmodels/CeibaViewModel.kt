@@ -5,8 +5,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.andres.ceiba.domain.model.posts.PostsItem
+import com.andres.ceiba.domain.model.users.UsersItem
 import com.andres.ceiba.domain.use_cases.CeibaUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -16,6 +19,7 @@ class CeibaViewModel @Inject constructor(
 ) : ViewModel() {
 
     var isLoading by mutableStateOf(false)
+    private var job: Job = Job()
 
     init {
         getUser()
@@ -23,13 +27,25 @@ class CeibaViewModel @Inject constructor(
         getPostsByUserId(1)
     }
 
+    fun insertUsers(list: ArrayList<UsersItem>) {
+        viewModelScope.launch {
+            ceibaUseCases.insertUsersDBUseCase(list)
+        }
+    }
+
+    fun insertPosts(list: ArrayList<PostsItem>) {
+        viewModelScope.launch {
+            ceibaUseCases.insertPostsDBUseCase(list)
+        }
+    }
+
     fun getUser() {
         viewModelScope.launch {
             isLoading = true
-            ceibaUseCases.usersUseCase()
+            ceibaUseCases.getUsersUseCase()
                 .onSuccess { users ->
                     isLoading = false
-                    users
+                    insertUsers(users)
                 }.onFailure {
                     isLoading = false
                     val errorCode = it.message
@@ -40,10 +56,10 @@ class CeibaViewModel @Inject constructor(
     fun getPosts() {
         viewModelScope.launch {
             isLoading = true
-            ceibaUseCases.postsUseCase()
-                .onSuccess {posts ->
+            ceibaUseCases.getPostsUseCase()
+                .onSuccess { posts ->
                     isLoading = false
-                    posts
+                    insertPosts(posts)
                 }.onFailure {
                     isLoading = false
                     val errorCode = it.message
@@ -54,10 +70,9 @@ class CeibaViewModel @Inject constructor(
     fun getPostsByUserId(userId: Int) {
         viewModelScope.launch {
             isLoading = true
-            ceibaUseCases.postsByUserIdUseCase(userId)
+            ceibaUseCases.getPostsByUserIdUseCase(userId)
                 .onSuccess { postsItem ->
                     isLoading = false
-                    postsItem
                 }.onFailure {
                     isLoading = false
                     val errorCode = it.message

@@ -1,8 +1,8 @@
-package com.andres.ceiba.domain.repositories
+package com.andres.ceiba.domain.repositories.remote
 
 import com.andres.ceiba.domain.model.posts.Posts
 
-interface PostsRepository {
+interface GetPostsRepository {
 
     suspend fun getPosts(): Result<Posts>
 }

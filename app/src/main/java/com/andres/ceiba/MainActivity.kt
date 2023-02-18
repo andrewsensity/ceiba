@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import com.andres.ceiba.presentation.navigation.CeibaNavHost
 import com.andres.ceiba.presentation.theme.CeibaTheme
 import com.andres.ceiba.presentation.ui.main.MainScreen
 import com.andres.ceiba.presentation.viewmodels.CeibaViewModel
@@ -16,7 +17,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             CeibaTheme {
-                MainScreen()
+                CeibaNavHost()
             }
         }
     }

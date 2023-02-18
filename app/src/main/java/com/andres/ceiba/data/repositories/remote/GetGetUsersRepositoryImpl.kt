@@ -1,12 +1,12 @@
-package com.andres.ceiba.data.repositories
+package com.andres.ceiba.data.repositories.remote
 
 import com.andres.ceiba.data.remote.CeibaApi
 import com.andres.ceiba.domain.model.users.Users
-import com.andres.ceiba.domain.repositories.UsersRepository
+import com.andres.ceiba.domain.repositories.remote.GetUsersRepository
 
-class UsersRepositoryImpl(
+class GetGetUsersRepositoryImpl(
     private val ceibaApi: CeibaApi
-): UsersRepository {
+): GetUsersRepository {
     override suspend fun getUsers(): Result<Users> {
         return try {
             val result = ceibaApi.getUsers()

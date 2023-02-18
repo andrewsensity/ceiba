@@ -1,12 +1,12 @@
-package com.andres.ceiba.data.repositories
+package com.andres.ceiba.data.repositories.remote
 
 import com.andres.ceiba.data.remote.CeibaApi
 import com.andres.ceiba.domain.model.posts.PostsItem
-import com.andres.ceiba.domain.repositories.PostsByUserIdRepository
+import com.andres.ceiba.domain.repositories.remote.GetPostsByUserIdRepository
 
-class PostsByUserIdRepositoryImpl(
+class GetGetPostsByUserIdRepositoryImpl(
     private val ceibaApi: CeibaApi,
-) : PostsByUserIdRepository {
+) : GetPostsByUserIdRepository {
 
     override suspend fun getPostsByUserId(userId: Int): Result<PostsItem> {
         return try {
