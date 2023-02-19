@@ -1,13 +1,15 @@
 package com.andres.ceiba.presentation.viewmodels
 
+import android.util.Log
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.andres.ceiba.data.utils.Constants
+import com.andres.ceiba.domain.model.posts.PostsItem
+import com.andres.ceiba.domain.model.users.UsersItem
 import com.andres.ceiba.domain.use_cases.CeibaUseCases
-import com.andres.ceiba.presentation.viewmodels.CeibaViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
@@ -16,55 +18,63 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
+@OptIn(DelicateCoroutinesApi::class)
 class SplashViewModel @Inject constructor(
     private val ceibaUseCases: CeibaUseCases,
 ) : ViewModel() {
-/*
+    var isLoading by mutableStateOf(false)
     private var job: Job = Job()
-    var species by mutableStateOf(SpeciesInDTO())
-        private set
-    var location = mutableStateListOf<LocationInDTO>()
-        private set
 
     init {
-        insertAllPokemon()
-        insertEvolution()
+        getUser()
+        getPosts()
     }
 
-    private fun insertAllPokemon() {
+    private fun getUser() {
         viewModelScope.launch {
-            useCases.getAllPokemonUseCase(PAGE_SIZE, LIMIT)
-                .onSuccess { pokemonListInDTO ->
-                    useCases.insertPokemonListUseCase(pokemonListInDTO.results)
-                    insertPokemon(pokemonListInDTO.results)
+            isLoading = true
+            ceibaUseCases.getUsersUseCase()
+                .onSuccess { users ->
+                    isLoading = false
+                    insertUsersDB(users)
                 }.onFailure {
+                    isLoading = false
+                    val errorCode = it.message ?: Constants.EMPTY
+                    Log.e("error_category", errorCode)
                     return@onFailure
                 }
         }
     }
 
-    @OptIn(DelicateCoroutinesApi::class)
-    private fun insertPokemon(list: List<Results>) {
-        cancelJobIfRunning()
-        job = GlobalScope.launch {
-            list.forEach { results ->
-                val id = results.url.getIdFromUrl()
-                val pokemonInDTO = useCases.getPokemonUseCase(id).getOrDefault(PokemonInDTO())
-                useCases.insertPokemonUseCase(pokemonInDTO)
-            }
+    private fun getPosts() {
+        viewModelScope.launch {
+            isLoading = true
+            ceibaUseCases.getPostsUseCase()
+                .onSuccess { posts ->
+                    isLoading = false
+                    insertPostsDB(posts)
+                }.onFailure {
+                    isLoading = false
+                    val errorCode = it.message ?: Constants.EMPTY
+                    Log.e("error_category", errorCode)
+                    return@onFailure
+                }
         }
     }
 
-    private fun insertEvolution() {
-        viewModelScope.launch {
-            for (i in 0..78) {
-                useCases.getPokemonEvolutionUseCase(i)
-                    .onSuccess { evolutionsInDto ->
-                        useCases.insertEvolutionsLocalUseCase(evolutionsInDto)
-                    }.onFailure {
-                        return@onFailure
-                    }
-            }
+    private fun insertUsersDB(list: ArrayList<UsersItem>) {
+        cancelJobIfRunning()
+        job = GlobalScope.launch {
+            ceibaUseCases.deleteUsersUseCase()
+            ceibaUseCases.insertUsersDBUseCase(list)
+        }
+    }
+
+    private fun insertPostsDB(list: ArrayList<PostsItem>) {
+        cancelJobIfRunning()
+        job = GlobalScope.launch {
+            ceibaUseCases.deletePostsUseCase()
+            ceibaUseCases.insertPostsDBUseCase(list)
         }
     }
 
@@ -72,5 +82,5 @@ class SplashViewModel @Inject constructor(
         if (job.isActive) {
             job.cancel()
         }
-    }*/
+    }
 }

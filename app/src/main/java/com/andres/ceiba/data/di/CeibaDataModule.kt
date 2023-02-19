@@ -5,7 +5,7 @@ import androidx.room.Room
 import com.andres.ceiba.data.local.CeibaDatabase
 import com.andres.ceiba.data.remote.CeibaApi
 import com.andres.ceiba.data.repositories.local.CeibaRepositoryLocalImpl
-import com.andres.ceiba.data.repositories.remote.GetGetPostsByUserIdRepositoryImpl
+import com.andres.ceiba.data.repositories.remote.GetPostsByUserIdRepositoryImpl
 import com.andres.ceiba.data.repositories.remote.GetGetPostsRepositoryImpl
 import com.andres.ceiba.data.repositories.remote.GetGetUsersRepositoryImpl
 import com.andres.ceiba.data.utils.Constants.BASE_URL
@@ -62,7 +62,7 @@ object CeibaDataModule {
 
     @Singleton
     @Provides
-    fun providePostsByUserIdRepository(api: CeibaApi): GetPostsByUserIdRepository = GetGetPostsByUserIdRepositoryImpl(api)
+    fun providePostsByUserIdRepository(api: CeibaApi): GetPostsByUserIdRepository = GetPostsByUserIdRepositoryImpl(api)
 
     @Singleton
     @Provides

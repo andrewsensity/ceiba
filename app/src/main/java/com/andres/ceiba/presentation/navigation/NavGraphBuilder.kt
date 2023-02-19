@@ -36,7 +36,7 @@ fun NavGraphBuilder.mainGraph(navController: NavController) {
         MainScreen(navController = navController)
     }
     composable(
-        route = "${Screen.PostsScreen.route}?$POSTS_ITEM={$POSTS_ITEM}&$USERS_ITEM={$USERS_ITEM}",
+        route = "${Screen.PostsScreen.route}?$USERS_ITEM={$USERS_ITEM}",
         enterTransition = {
             slideInVertically(initialOffsetY = { 4000 })
         },
@@ -47,9 +47,6 @@ fun NavGraphBuilder.mainGraph(navController: NavController) {
         val userItem =
             navBackStackEntry.arguments?.getString(USERS_ITEM)?.fromJson(UsersItem::class.java)
                 ?: UsersItem()
-        val postsItem =
-            navBackStackEntry.arguments?.getString(POSTS_ITEM)?.fromJson(PostsItem::class.java)
-                ?: PostsItem()
-        PostsScreen(posts = postsItem, user = userItem, navController = navController)
+        PostsScreen(user = userItem, navController = navController)
     }
 }

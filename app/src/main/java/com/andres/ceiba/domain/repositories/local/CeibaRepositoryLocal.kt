@@ -1,5 +1,7 @@
 package com.andres.ceiba.domain.repositories.local
 
+import com.andres.ceiba.domain.model.post_by_user_id.PostByUserId
+import com.andres.ceiba.domain.model.post_by_user_id.PostByUserIdItem
 import com.andres.ceiba.domain.model.posts.Posts
 import com.andres.ceiba.domain.model.posts.PostsItem
 import com.andres.ceiba.domain.model.users.Users
@@ -12,9 +14,17 @@ interface CeibaRepositoryLocal {
 
     suspend fun insertPostsDB(postsList: List<PostsItem>)
 
-    fun getUsersFromDB(): Flow<List<UsersItem>>
+    suspend fun insertPostsByUserId(postsByUserIdList: List<PostByUserIdItem>)
 
-    fun getPostsFromDB(): Flow<List<PostsItem>>
+    fun getUsersFromDB(): Flow<List<UsersItem>?>
 
-    fun getPostByUserIdFromDB(userId: Int): Flow<PostsItem>
+    fun getPostsFromDB(): Flow<List<PostsItem>?>
+
+    fun getPostByUserIdFromDB(userId: Int): Flow<List<PostByUserIdItem>?>
+
+    suspend fun deleteUsers()
+
+    suspend fun deletePosts()
+
+    suspend fun deletePostsByUserId()
 }

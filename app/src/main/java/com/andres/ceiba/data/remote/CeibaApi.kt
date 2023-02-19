@@ -1,14 +1,13 @@
 package com.andres.ceiba.data.remote
 
 import com.andres.ceiba.data.utils.Constants.POSTS
-import com.andres.ceiba.data.utils.Constants.POSTS_BY_USER_ID
 import com.andres.ceiba.data.utils.Constants.USERS
 import com.andres.ceiba.data.utils.Constants.USER_ID
+import com.andres.ceiba.domain.model.post_by_user_id.PostByUserId
+import com.andres.ceiba.domain.model.post_by_user_id.PostByUserIdItem
 import com.andres.ceiba.domain.model.posts.Posts
-import com.andres.ceiba.domain.model.posts.PostsItem
 import com.andres.ceiba.domain.model.users.Users
 import retrofit2.http.GET
-import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface CeibaApi {
@@ -19,8 +18,8 @@ interface CeibaApi {
     @GET(POSTS)
     suspend fun getPosts(): Posts
 
-    @GET(POSTS_BY_USER_ID)
+    @GET(POSTS)
     suspend fun getPostsByUserId(
-        @Path(USER_ID) userId: Int,
-    ): PostsItem
+        @Query(USER_ID) userId: Int,
+    ): List<PostByUserIdItem>
 }

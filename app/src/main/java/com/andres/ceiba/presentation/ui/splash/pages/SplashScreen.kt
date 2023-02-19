@@ -19,7 +19,7 @@ fun SplashScreen(
     splashViewModel: SplashViewModel = hiltViewModel(),
 ) {
     val scale = remember { androidx.compose.animation.core.Animatable(0f) }
-    val time by remember { mutableStateOf(1500) }
+    val time by remember { mutableStateOf(1000) }
     val destination = Screen.MainScreen.route
     LaunchedEffect(key1 = true) {
         scale.animateTo(

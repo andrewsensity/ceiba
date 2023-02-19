@@ -3,9 +3,9 @@ package com.andres.ceiba.data.mappers
 import com.andres.ceiba.data.local.entity.PostByUserIdEntity
 import com.andres.ceiba.data.local.entity.PostsEntity
 import com.andres.ceiba.data.local.entity.UsersEntity
-import com.andres.ceiba.domain.model.posts.Posts
+import com.andres.ceiba.domain.model.post_by_user_id.PostByUserId
+import com.andres.ceiba.domain.model.post_by_user_id.PostByUserIdItem
 import com.andres.ceiba.domain.model.posts.PostsItem
-import com.andres.ceiba.domain.model.users.Users
 import com.andres.ceiba.domain.model.users.UsersItem
 
 fun List<UsersItem>.toUsersEntity(): UsersEntity {
@@ -14,7 +14,7 @@ fun List<UsersItem>.toUsersEntity(): UsersEntity {
     )
 }
 
-fun UsersEntity.toUsersList(): List<UsersItem> {
+fun UsersEntity.toUsersList(): List<UsersItem>? {
     return this.users
 }
 
@@ -24,24 +24,16 @@ fun List<PostsItem>.toPostsEntity(): PostsEntity {
     )
 }
 
-fun PostsEntity.toPostsList(): List<PostsItem> {
+fun PostsEntity.toPostsList(): List<PostsItem>? {
     return this.posts
 }
 
-fun PostsItem.toPostByUserIdEntity(): PostByUserIdEntity {
+fun List<PostByUserIdItem>.toPostByUserIdEntity(): PostByUserIdEntity {
     return PostByUserIdEntity(
-        id = this.id,
-        body = this.body,
-        title = this.title,
-        userId = this.userId
+        postByUserId = this
     )
 }
 
-fun PostByUserIdEntity.toPostItem(): PostsItem {
-    return PostsItem(
-        id = this.id,
-        body = this.body,
-        title = this.title,
-        userId = this.userId
-    )
+fun PostByUserIdEntity.toPostByUserIdList(): List<PostByUserIdItem>? {
+    return this.postByUserId
 }

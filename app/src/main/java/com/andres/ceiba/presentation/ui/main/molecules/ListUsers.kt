@@ -22,15 +22,15 @@ import androidx.navigation.NavController
 import com.andres.ceiba.R
 import com.andres.ceiba.data.utils.filterList
 import com.andres.ceiba.presentation.theme.GreenCeiba
-import com.andres.ceiba.presentation.viewmodels.CeibaViewModel
+import com.andres.ceiba.presentation.viewmodels.MainViewModel
 
 @Composable
 fun ListUsers(
-    ceibaViewModel: CeibaViewModel,
+    mainViewModel: MainViewModel,
     navController: NavController,
     searchUser: String,
 ) {
-    val usersList = ceibaViewModel.usersDB
+    val usersList = mainViewModel.usersDB
     val lazyListState = rememberLazyListState()
     val userListFiltered = usersList.filterList(searchUser.lowercase()) { usersItem ->
         usersItem.name.lowercase().contains(searchUser)
@@ -43,7 +43,7 @@ fun ListUsers(
                     index = index,
                     usersItem = users,
                     navController = navController,
-                    ceibaViewModel = ceibaViewModel
+                    mainViewModel = mainViewModel
                 )
             }
         } else {

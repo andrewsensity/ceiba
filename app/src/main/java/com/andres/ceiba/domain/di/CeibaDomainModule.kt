@@ -33,9 +33,13 @@ object CeibaDomainModule {
             getPostsByUserIdUseCase = GetPostsByUserIdUseCase(getPostsByUserIdRepository),
             insertUsersDBUseCase = InsertUsersDBUseCase(ceibaRepositoryLocal),
             insertPostsDBUseCase = InsertPostsDBUseCase(ceibaRepositoryLocal),
+            insertPostByUserIdDBUseCase = InsertPostByUserIdDBUseCase(ceibaRepositoryLocal),
             getUsersDBUseCase = GetUsersDBUseCase(ceibaRepositoryLocal),
             getPostsDBUseCase = GetPostsDBUseCase(ceibaRepositoryLocal),
-            getPostByUserIdFromDBUseCase = GetPostByUserIdFromDBUseCase(ceibaRepositoryLocal)
+            getPostByUserIdDBUseCase = GetPostByUserIdDBUseCase(ceibaRepositoryLocal),
+            deleteUsersUseCase = DeleteUsersUseCase(ceibaRepositoryLocal),
+            deletePostsUseCase = DeletePostsUseCase(ceibaRepositoryLocal),
+            deletePostsByUserIdUseCase = DeletePostsByUserIdUseCase(ceibaRepositoryLocal)
         )
     }
 }

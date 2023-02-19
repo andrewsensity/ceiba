@@ -19,11 +19,11 @@ import com.andres.ceiba.data.utils.Constants.EMPTY
 import com.andres.ceiba.presentation.theme.GreenCeiba
 import com.andres.ceiba.presentation.ui.main.atoms.CustomTextField
 import com.andres.ceiba.presentation.ui.main.molecules.ListUsers
-import com.andres.ceiba.presentation.viewmodels.CeibaViewModel
+import com.andres.ceiba.presentation.viewmodels.MainViewModel
 
 @Composable
 fun ContentMain(
-    ceibaViewModel: CeibaViewModel,
+    mainViewModel: MainViewModel,
     navController: NavController,
 ) {
     val localFocusManager = LocalFocusManager.current
@@ -55,7 +55,7 @@ fun ContentMain(
         }
     )
     ListUsers(
-        ceibaViewModel = ceibaViewModel,
+        mainViewModel = mainViewModel,
         navController = navController,
         searchUser = searchUser
     )

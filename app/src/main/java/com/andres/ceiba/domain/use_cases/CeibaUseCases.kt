@@ -11,7 +11,11 @@ data class CeibaUseCases(
     val getPostsByUserIdUseCase: GetPostsByUserIdUseCase,
     val insertUsersDBUseCase: InsertUsersDBUseCase,
     val insertPostsDBUseCase: InsertPostsDBUseCase,
+    val insertPostByUserIdDBUseCase: InsertPostByUserIdDBUseCase,
     val getUsersDBUseCase: GetUsersDBUseCase,
     val getPostsDBUseCase: GetPostsDBUseCase,
-    val getPostByUserIdFromDBUseCase: GetPostByUserIdFromDBUseCase
+    val getPostByUserIdDBUseCase: GetPostByUserIdDBUseCase,
+    val deleteUsersUseCase: DeleteUsersUseCase,
+    val deletePostsUseCase: DeletePostsUseCase,
+    val deletePostsByUserIdUseCase: DeletePostsByUserIdUseCase
 )

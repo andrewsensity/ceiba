@@ -1,7 +1,7 @@
 package com.andres.ceiba.data.utils
 
-sealed class CeibaEvents {
+sealed class MainEvents {
     data class OnClickPostsByUserId(
         val id: Int,
-    ) : CeibaEvents()
+    ) : MainEvents()
 }

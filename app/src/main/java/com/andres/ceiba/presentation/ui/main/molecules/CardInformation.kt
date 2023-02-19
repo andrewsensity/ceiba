@@ -23,14 +23,14 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.andres.ceiba.R
-import com.andres.ceiba.data.utils.CeibaEvents
+import com.andres.ceiba.data.utils.MainEvents
 import com.andres.ceiba.domain.model.users.Address
 import com.andres.ceiba.domain.model.users.Company
 import com.andres.ceiba.domain.model.users.Geo
 import com.andres.ceiba.domain.model.users.UsersItem
 import com.andres.ceiba.presentation.theme.GreenCeiba
 import com.andres.ceiba.presentation.ui.UiEventCeiba
-import com.andres.ceiba.presentation.viewmodels.CeibaViewModel
+import com.andres.ceiba.presentation.viewmodels.MainViewModel
 
 @Composable
 fun CardInformation(
@@ -38,10 +38,10 @@ fun CardInformation(
     index: Int,
     usersItem: UsersItem,
     navController: NavController,
-    ceibaViewModel: CeibaViewModel,
+    mainViewModel: MainViewModel,
 ) {
     LaunchedEffect(key1 = true) {
-        ceibaViewModel.uiEvent.collect { event ->
+        mainViewModel.uiEvent.collect { event ->
             when (event) {
                 is UiEventCeiba.Navigate -> navController.navigate(event.screen)
             }
@@ -82,8 +82,8 @@ fun CardInformation(
                     .fillMaxWidth()
                     .padding(top = 8.dp)
                     .clickable {
-                        ceibaViewModel.onEvent(
-                            CeibaEvents.OnClickPostsByUserId(id = index)
+                        mainViewModel.onEvent(
+                            MainEvents.OnClickPostsByUserId(id = usersItem.id)
                         )
                     },
                 text = stringResource(R.string.show_posts),
@@ -122,7 +122,7 @@ fun CardInformationPreview() {
             website = "www.andrew.com"
         ),
         navController = rememberNavController(),
-        ceibaViewModel = hiltViewModel(),
+        mainViewModel = hiltViewModel(),
         index = 0
     )
 }

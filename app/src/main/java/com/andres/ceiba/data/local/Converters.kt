@@ -1,6 +1,8 @@
 package com.andres.ceiba.data.local
 
 import androidx.room.TypeConverter
+import com.andres.ceiba.domain.model.post_by_user_id.PostByUserId
+import com.andres.ceiba.domain.model.post_by_user_id.PostByUserIdItem
 import com.andres.ceiba.domain.model.posts.PostsItem
 import com.andres.ceiba.domain.model.users.UsersItem
 import com.google.gson.Gson
@@ -31,13 +33,13 @@ class Converters {
     }
 
     @TypeConverter
-    fun toPost(data: String): PostsItem {
-        val post = object : TypeToken<PostsItem>() {}.type
+    fun toPostByUserId(data: String): List<PostByUserIdItem> {
+        val post = object : TypeToken<List<PostByUserIdItem>>() {}.type
         return Gson().fromJson(data, post)
     }
 
     @TypeConverter
-    fun fromPost(post: PostsItem): String {
+    fun fromPostByUserId(post: List<PostByUserIdItem>): String {
         return Gson().toJson(post)
     }
 }
