@@ -3,6 +3,12 @@
     <string name="phone">Phone</string>
     <string name="email">Email</string>
     <string name="show_posts">VER PUBLICACIONES</string>
+    <string name="posts">Publicaciones</string>
     <string name="txt_description_search">Buscar usuarios</string>
     <string name="search">Search</string>
+    <string name="enterTest">Prueba de Ingreso</string>
+    <string name="list_is_empty">List is empty</string>
+    <string name="arrow_back">Arrow back</string>
+    <string name="loading">loading</string>
+    <string name="developer">By Andrés Echavarría</string>
 </resources>

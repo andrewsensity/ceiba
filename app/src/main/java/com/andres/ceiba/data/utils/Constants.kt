@@ -14,4 +14,11 @@ object Constants {
     const val DATABASE_VERSION = 1
 
     const val EMPTY = ""
+    const val ZERO = 0
+    const val POSTS_ITEM = "posts_item"
+    const val USERS_ITEM = "users_item"
+
+    const val SPLASH_SCREEN = "splash_screen"
+    const val MAIN_SCREEN = "main_screen"
+    const val POSTS_SCREEN = "posts_screen"
 }

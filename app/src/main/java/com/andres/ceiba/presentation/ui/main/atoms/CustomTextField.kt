@@ -35,8 +35,8 @@ fun CustomTextField(
         onValueChange = onValueChange,
         colors = TextFieldDefaults.textFieldColors(
             containerColor = Color.White,
-            focusedIndicatorColor = Color.Transparent,
-            unfocusedIndicatorColor = Color.Transparent,
+            focusedIndicatorColor = GreenCeiba,
+            unfocusedIndicatorColor = GreenCeiba,
             focusedLabelColor = Color.Transparent,
             unfocusedLabelColor = GreenCeiba,
             disabledLabelColor = Color.Transparent,

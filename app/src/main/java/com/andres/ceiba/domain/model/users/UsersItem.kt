@@ -1,12 +1,15 @@
 package com.andres.ceiba.domain.model.users
 
+import com.andres.ceiba.data.utils.Constants.EMPTY
+import com.andres.ceiba.data.utils.Constants.ZERO
+
 data class UsersItem(
-    val address: Address,
-    val company: Company,
-    val email: String,
-    val id: Int,
-    val name: String,
-    val phone: String,
-    val username: String,
-    val website: String
+    val address: Address = Address(),
+    val company: Company = Company(),
+    val email: String = EMPTY,
+    val id: Int = ZERO,
+    val name: String = EMPTY,
+    val phone: String = EMPTY,
+    val username: String = EMPTY,
+    val website: String = EMPTY,
 )

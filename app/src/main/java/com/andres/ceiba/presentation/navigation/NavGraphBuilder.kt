@@ -1,10 +1,18 @@
 package com.andres.ceiba.presentation.navigation
 
 import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
+import com.andres.ceiba.data.utils.Constants.POSTS_ITEM
+import com.andres.ceiba.data.utils.Constants.USERS_ITEM
+import com.andres.ceiba.data.utils.fromJson
+import com.andres.ceiba.domain.model.posts.PostsItem
+import com.andres.ceiba.domain.model.users.UsersItem
 import com.andres.ceiba.presentation.ui.main.pages.MainScreen
-import com.andres.ceiba.presentation.ui.splash.SplashScreen
+import com.andres.ceiba.presentation.ui.posts.pages.PostsScreen
+import com.andres.ceiba.presentation.ui.splash.pages.SplashScreen
 import com.google.accompanist.navigation.animation.composable
 
 @OptIn(ExperimentalAnimationApi::class)
@@ -16,12 +24,19 @@ fun NavGraphBuilder.splashGraph(navController: NavController) {
 
 @OptIn(ExperimentalAnimationApi::class)
 fun NavGraphBuilder.mainGraph(navController: NavController) {
-    composable(route = Screen.MainScreen.route) {
+    composable(
+        route = Screen.MainScreen.route,
+        enterTransition = {
+            slideInVertically(initialOffsetY = { 4000 })
+        },
+        exitTransition = {
+            slideOutVertically(targetOffsetY = { 2000 })
+        }
+    ) {
         MainScreen(navController = navController)
     }
-    /*composable(
-        route = "${Screen.DetailScreen.route}?$ID_PARAMETER={$ID_PARAMETER}",
-        arguments = listOf(navArgument(ID_PARAMETER) { type = NavType.IntType }),
+    composable(
+        route = "${Screen.PostsScreen.route}?$POSTS_ITEM={$POSTS_ITEM}&$USERS_ITEM={$USERS_ITEM}",
         enterTransition = {
             slideInVertically(initialOffsetY = { 4000 })
         },
@@ -29,9 +44,12 @@ fun NavGraphBuilder.mainGraph(navController: NavController) {
             slideOutVertically(targetOffsetY = { 2000 })
         }
     ) { navBackStackEntry ->
-        navBackStackEntry.arguments?.let { bundle ->
-            val id = bundle.getInt(ID_PARAMETER)
-            DetailScreen(id = id, navController = navController)
-        }
-    }*/
+        val userItem =
+            navBackStackEntry.arguments?.getString(USERS_ITEM)?.fromJson(UsersItem::class.java)
+                ?: UsersItem()
+        val postsItem =
+            navBackStackEntry.arguments?.getString(POSTS_ITEM)?.fromJson(PostsItem::class.java)
+                ?: PostsItem()
+        PostsScreen(posts = postsItem, user = userItem, navController = navController)
+    }
 }

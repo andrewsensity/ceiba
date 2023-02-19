@@ -1,4 +1,4 @@
-package com.andres.ceiba
+package com.andres.ceiba.presentation.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

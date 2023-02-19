@@ -1,4 +1,4 @@
-package com.andres.ceiba.presentation.ui.splash
+package com.andres.ceiba.presentation.viewmodels
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf

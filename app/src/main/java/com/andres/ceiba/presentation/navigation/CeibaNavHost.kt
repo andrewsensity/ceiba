@@ -3,8 +3,6 @@ package com.andres.ceiba.presentation.navigation
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
-import com.andres.ceiba.presentation.navigation.mainGraph
-import com.andres.ceiba.presentation.navigation.splashGraph
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 
@@ -12,7 +10,7 @@ import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 @Composable
 fun CeibaNavHost(
     navController: NavHostController = rememberAnimatedNavController(),
-    startDestination: String = Screen.MainScreen.route,
+    startDestination: String = Screen.SplashScreen.route,
 ) {
     AnimatedNavHost(
         navController = navController,
