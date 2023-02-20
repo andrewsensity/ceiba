@@ -6,8 +6,8 @@ import com.andres.ceiba.data.local.CeibaDatabase
 import com.andres.ceiba.data.remote.CeibaApi
 import com.andres.ceiba.data.repositories.local.CeibaRepositoryLocalImpl
 import com.andres.ceiba.data.repositories.remote.GetPostsByUserIdRepositoryImpl
-import com.andres.ceiba.data.repositories.remote.GetGetPostsRepositoryImpl
-import com.andres.ceiba.data.repositories.remote.GetGetUsersRepositoryImpl
+import com.andres.ceiba.data.repositories.remote.GetPostsRepositoryImpl
+import com.andres.ceiba.data.repositories.remote.GetUsersRepositoryImpl
 import com.andres.ceiba.data.utils.Constants.BASE_URL
 import com.andres.ceiba.data.utils.Constants.DATABASE_POKEMON
 import com.andres.ceiba.domain.repositories.local.CeibaRepositoryLocal
@@ -54,11 +54,11 @@ object CeibaDataModule {
 
     @Singleton
     @Provides
-    fun provideUserRepository(api: CeibaApi): GetUsersRepository = GetGetUsersRepositoryImpl(api)
+    fun provideUserRepository(api: CeibaApi): GetUsersRepository = GetUsersRepositoryImpl(api)
 
     @Singleton
     @Provides
-    fun providePostsRepository(api: CeibaApi): GetPostsRepository = GetGetPostsRepositoryImpl(api)
+    fun providePostsRepository(api: CeibaApi): GetPostsRepository = GetPostsRepositoryImpl(api)
 
     @Singleton
     @Provides

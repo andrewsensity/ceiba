@@ -5,11 +5,9 @@ import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
-import com.andres.ceiba.data.utils.Constants.POSTS_ITEM
 import com.andres.ceiba.data.utils.Constants.USERS_ITEM
 import com.andres.ceiba.data.utils.Constants.USERS_NAV
-import com.andres.ceiba.data.utils.fromJson
-import com.andres.ceiba.domain.model.posts.PostsItem
+import com.andres.ceiba.data.utils.Utils.fromJson
 import com.andres.ceiba.domain.model.users.Users
 import com.andres.ceiba.domain.model.users.UsersItem
 import com.andres.ceiba.presentation.ui.main.pages.MainScreen
@@ -34,7 +32,7 @@ fun NavGraphBuilder.mainGraph(navController: NavController) {
         exitTransition = {
             slideOutVertically(targetOffsetY = { 2000 })
         }
-    ) {navBackStackEntry ->
+    ) { navBackStackEntry ->
         val user =
             navBackStackEntry.arguments?.getString(USERS_NAV)?.fromJson(Users::class.java)
                 ?: Users()

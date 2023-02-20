@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.andres.ceiba.data.utils.Constants
 import com.andres.ceiba.data.utils.Constants.USERS_NAV
-import com.andres.ceiba.data.utils.toJson
+import com.andres.ceiba.data.utils.Utils.toJson
 import com.andres.ceiba.domain.model.posts.PostsItem
 import com.andres.ceiba.domain.model.users.UsersItem
 import com.andres.ceiba.domain.use_cases.CeibaUseCases

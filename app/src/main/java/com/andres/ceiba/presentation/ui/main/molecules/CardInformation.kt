@@ -25,7 +25,7 @@ import androidx.navigation.compose.rememberNavController
 import com.andres.ceiba.R
 import com.andres.ceiba.data.utils.Constants.USERS_ITEM
 import com.andres.ceiba.data.utils.MainEvents
-import com.andres.ceiba.data.utils.toJson
+import com.andres.ceiba.data.utils.Utils.toJson
 import com.andres.ceiba.domain.model.users.Address
 import com.andres.ceiba.domain.model.users.Company
 import com.andres.ceiba.domain.model.users.Geo

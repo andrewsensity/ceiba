@@ -4,7 +4,7 @@ import com.andres.ceiba.data.remote.CeibaApi
 import com.andres.ceiba.domain.model.posts.Posts
 import com.andres.ceiba.domain.repositories.remote.GetPostsRepository
 
-class GetGetPostsRepositoryImpl(
+class GetPostsRepositoryImpl(
     private val ceibaApi: CeibaApi,
 ) : GetPostsRepository {
 

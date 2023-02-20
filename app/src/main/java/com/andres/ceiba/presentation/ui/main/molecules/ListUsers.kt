@@ -20,7 +20,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.andres.ceiba.R
-import com.andres.ceiba.data.utils.filterList
+import com.andres.ceiba.data.utils.Utils.filterList
 import com.andres.ceiba.domain.model.users.Users
 import com.andres.ceiba.presentation.theme.GreenCeiba
 import com.andres.ceiba.presentation.viewmodels.MainViewModel
