@@ -65,6 +65,7 @@ android {
 
 dependencies {
     implementation("com.squareup.okhttp3:mockwebserver:4.9.3")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
     androidX()
     compose()
     retrofit()
