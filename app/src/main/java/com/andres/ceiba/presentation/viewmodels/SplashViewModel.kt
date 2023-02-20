@@ -62,7 +62,9 @@ class SplashViewModel @Inject constructor(
                     insertPostsDB(posts)
                     delay(2000)
                     _uiEvent.send(
-                        UiEventCeiba.Navigate(Screen.MainScreen.route + "?$USERS_NAV=${usersDB.toJson()}")
+                        UiEventCeiba.Navigate(
+                            Screen.MainScreen.route + "?$USERS_NAV=${usersDB.toJson()}"
+                        )
                     )
                 }.onFailure {
                     val errorCode = it.message ?: Constants.EMPTY

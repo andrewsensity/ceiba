@@ -8,5 +8,5 @@ import com.andres.ceiba.domain.model.posts.PostsItem
 @Entity(tableName = TABLE_POSTS)
 data class PostsEntity(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
-    val posts: List<PostsItem>
+    val posts: List<PostsItem>,
 )

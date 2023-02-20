@@ -5,8 +5,8 @@ import com.andres.ceiba.domain.model.users.Users
 import com.andres.ceiba.domain.repositories.remote.GetUsersRepository
 
 class GetUsersRepositoryImpl(
-    private val ceibaApi: CeibaApi
-): GetUsersRepository {
+    private val ceibaApi: CeibaApi,
+) : GetUsersRepository {
     override suspend fun getUsers(): Result<Users> {
         return try {
             val result = ceibaApi.getUsers()

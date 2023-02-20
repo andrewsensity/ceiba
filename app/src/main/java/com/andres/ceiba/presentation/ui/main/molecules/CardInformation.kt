@@ -11,7 +11,8 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
@@ -23,9 +24,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.andres.ceiba.R
-import com.andres.ceiba.data.utils.Constants.USERS_ITEM
 import com.andres.ceiba.data.utils.MainEvents
-import com.andres.ceiba.data.utils.Utils.toJson
 import com.andres.ceiba.domain.model.users.Address
 import com.andres.ceiba.domain.model.users.Company
 import com.andres.ceiba.domain.model.users.Geo
@@ -45,7 +44,7 @@ fun CardInformation(
     LaunchedEffect(key1 = true) {
         mainViewModel.uiEvent.collect { event ->
             when (event) {
-                is UiEventCeiba.Navigate -> navController.navigate(event.screen+"?$USERS_ITEM=${usersItem.toJson()}")
+                is UiEventCeiba.Navigate -> navController.navigate(event.screen)
             }
         }
     }
@@ -86,7 +85,7 @@ fun CardInformation(
                     .padding(top = 8.dp)
                     .clickable {
                         mainViewModel.onEvent(
-                            MainEvents.OnClickPostsByUserId(id = index)
+                            MainEvents.OnClickPostsByUserId(id = index, user = usersItem)
                         )
                     },
                 text = stringResource(R.string.show_posts),

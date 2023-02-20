@@ -7,5 +7,5 @@ data class Address(
     val geo: Geo = Geo(),
     val street: String = EMPTY,
     val suite: String = EMPTY,
-    val zipcode: String = EMPTY
+    val zipcode: String = EMPTY,
 )

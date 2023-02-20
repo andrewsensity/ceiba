@@ -38,10 +38,10 @@ fun ListUsers(
     }
     LazyColumn(state = lazyListState) {
         if (userListFiltered.isNotEmpty()) {
-            itemsIndexed(userListFiltered) { index, users ->
+            itemsIndexed(userListFiltered) { index, usersItem ->
                 CardInformation(
                     index = index,
-                    usersItem = users,
+                    usersItem = usersItem,
                     navController = navController,
                     mainViewModel = mainViewModel
                 )

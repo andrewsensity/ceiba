@@ -4,5 +4,5 @@ data class PostByUserIdItem(
     val body: String,
     val id: Int,
     val title: String,
-    val userId: Int
+    val userId: Int,
 )

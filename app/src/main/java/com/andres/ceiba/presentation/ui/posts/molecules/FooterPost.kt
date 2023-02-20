@@ -1,6 +1,5 @@
 package com.andres.ceiba.presentation.ui.posts.molecules
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
@@ -8,7 +7,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -65,7 +63,10 @@ fun FooterPost(
                     style = MaterialTheme.typography.bodyMedium
                 )
                 if (postsViewModel.postByUserIdDB.size - 1 != index) {
-                    Divider(modifier = Modifier.padding(horizontal = 30.dp, vertical = 8.dp))
+                    Divider(
+                        modifier = Modifier.padding(horizontal = 30.dp, vertical = 8.dp),
+                        color = GreenCeiba
+                    )
                 } else {
                     Spacer(modifier = Modifier.height(16.dp))
                 }

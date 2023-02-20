@@ -14,7 +14,7 @@ import com.andres.ceiba.presentation.theme.GreenCeiba
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopAppBarPosts(
-    navController: NavController
+    navController: NavController,
 ) {
     TopAppBar(
         title = {

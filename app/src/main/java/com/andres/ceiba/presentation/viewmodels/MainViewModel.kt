@@ -7,8 +7,11 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.andres.ceiba.data.utils.Constants.EMPTY
+import com.andres.ceiba.data.utils.Constants.USERS_ITEM
 import com.andres.ceiba.data.utils.MainEvents
+import com.andres.ceiba.data.utils.Utils.toJson
 import com.andres.ceiba.domain.model.post_by_user_id.PostByUserIdItem
+import com.andres.ceiba.domain.model.users.UsersItem
 import com.andres.ceiba.domain.use_cases.CeibaUseCases
 import com.andres.ceiba.presentation.navigation.Screen
 import com.andres.ceiba.presentation.ui.UiEventCeiba
@@ -30,12 +33,12 @@ class MainViewModel @Inject constructor(
     fun onEvent(event: MainEvents) {
         when (event) {
             is MainEvents.OnClickPostsByUserId -> {
-                getPostsByUserId(event.id)
+                getPostsByUserId(event.id, event.user)
             }
         }
     }
 
-    private fun getPostsByUserId(userId: Int) {
+    private fun getPostsByUserId(userId: Int, usersItem: UsersItem) {
         viewModelScope.launch {
             isLoading = true
             ceibaUseCases.getPostsByUserIdUseCase(userId + 1)
@@ -44,7 +47,7 @@ class MainViewModel @Inject constructor(
                     insertPostsByUserIdDB(postByUserId)
                     _uiEvent.send(
                         UiEventCeiba.Navigate(
-                            Screen.PostsScreen.route
+                            Screen.PostsScreen.route + "?$USERS_ITEM=${usersItem.toJson()}"
                         )
                     )
                 }.onFailure {

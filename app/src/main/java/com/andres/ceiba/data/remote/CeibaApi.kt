@@ -4,7 +4,6 @@ import com.andres.ceiba.data.utils.Constants.POSTS
 import com.andres.ceiba.data.utils.Constants.USERS
 import com.andres.ceiba.data.utils.Constants.USER_ID
 import com.andres.ceiba.domain.model.post_by_user_id.PostByUserId
-import com.andres.ceiba.domain.model.post_by_user_id.PostByUserIdItem
 import com.andres.ceiba.domain.model.posts.Posts
 import com.andres.ceiba.domain.model.users.Users
 import retrofit2.http.GET

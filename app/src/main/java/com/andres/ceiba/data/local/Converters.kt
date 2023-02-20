@@ -1,7 +1,6 @@
 package com.andres.ceiba.data.local
 
 import androidx.room.TypeConverter
-import com.andres.ceiba.domain.model.post_by_user_id.PostByUserId
 import com.andres.ceiba.domain.model.post_by_user_id.PostByUserIdItem
 import com.andres.ceiba.domain.model.posts.PostsItem
 import com.andres.ceiba.domain.model.users.UsersItem

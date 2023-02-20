@@ -2,7 +2,6 @@ package com.andres.ceiba.data.repositories.local
 
 import com.andres.ceiba.data.local.dao.CeibaDao
 import com.andres.ceiba.data.mappers.*
-import com.andres.ceiba.domain.model.post_by_user_id.PostByUserId
 import com.andres.ceiba.domain.model.post_by_user_id.PostByUserIdItem
 import com.andres.ceiba.domain.model.posts.PostsItem
 import com.andres.ceiba.domain.model.users.UsersItem
@@ -11,8 +10,8 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 class CeibaRepositoryLocalImpl(
-    private val ceibaDao: CeibaDao
-): CeibaRepositoryLocal {
+    private val ceibaDao: CeibaDao,
+) : CeibaRepositoryLocal {
     override suspend fun insertUsersDB(usersList: List<UsersItem>) {
         ceibaDao.insertUsersDB(usersList.toUsersEntity())
     }

@@ -19,7 +19,7 @@ import com.andres.ceiba.presentation.viewmodels.MainViewModel
 fun MainScreen(
     navController: NavController,
     mainViewModel: MainViewModel = hiltViewModel(),
-    user: Users
+    user: Users,
 ) {
     val context = LocalContext.current
     Scaffold(

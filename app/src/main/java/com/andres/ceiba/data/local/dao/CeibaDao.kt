@@ -10,7 +10,6 @@ import com.andres.ceiba.data.local.entity.UsersEntity
 import com.andres.ceiba.data.utils.Constants.TABLE_POSTS
 import com.andres.ceiba.data.utils.Constants.TABLE_POSTS_BY_USER_ID
 import com.andres.ceiba.data.utils.Constants.TABLE_USERS
-import com.andres.ceiba.data.utils.Constants.USER_ID
 import kotlinx.coroutines.flow.Flow
 
 @Dao

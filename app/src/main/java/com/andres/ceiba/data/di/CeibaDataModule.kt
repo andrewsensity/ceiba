@@ -62,7 +62,8 @@ object CeibaDataModule {
 
     @Singleton
     @Provides
-    fun providePostsByUserIdRepository(api: CeibaApi): GetPostsByUserIdRepository = GetPostsByUserIdRepositoryImpl(api)
+    fun providePostsByUserIdRepository(api: CeibaApi): GetPostsByUserIdRepository =
+        GetPostsByUserIdRepositoryImpl(api)
 
     @Singleton
     @Provides

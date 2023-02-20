@@ -14,7 +14,6 @@ object Constants {
 
     const val EMPTY = ""
     const val ZERO = 0
-    const val POSTS_ITEM = "posts_item"
     const val USERS_ITEM = "users_item"
     const val USERS_NAV = "users"
 

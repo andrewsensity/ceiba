@@ -7,5 +7,5 @@ data class PostsItem(
     val body: String = EMPTY,
     val id: Int = ZERO,
     val title: String = EMPTY,
-    val userId: Int = ZERO
+    val userId: Int = ZERO,
 )

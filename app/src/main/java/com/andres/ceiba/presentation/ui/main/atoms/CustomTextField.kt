@@ -19,7 +19,6 @@ import androidx.compose.ui.unit.dp
 import com.andres.ceiba.data.utils.Constants.EMPTY
 import com.andres.ceiba.presentation.theme.GreenCeiba
 
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CustomTextField(
