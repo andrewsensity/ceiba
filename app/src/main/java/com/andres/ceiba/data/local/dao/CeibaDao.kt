@@ -31,8 +31,8 @@ interface CeibaDao {
     @Query("SELECT * FROM $TABLE_POSTS")
     fun getPostsFromDB(): Flow<PostsEntity?>
 
-    @Query("SELECT * FROM $TABLE_POSTS_BY_USER_ID WHERE $TABLE_POSTS_BY_USER_ID.postByUserId = :userId")
-    fun getPostByUserIdFromDB(userId: Int): Flow<PostByUserIdEntity?>
+    @Query("SELECT * FROM $TABLE_POSTS_BY_USER_ID")
+    fun getPostByUserIdFromDB(): Flow<PostByUserIdEntity?>
 
     @Query("DELETE FROM $TABLE_USERS")
     fun deleteUsers()

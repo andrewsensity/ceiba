@@ -6,5 +6,5 @@ class GetPostByUserIdDBUseCase(
     private val ceibaRepositoryLocal: CeibaRepositoryLocal
 ) {
 
-    operator fun invoke(userId: Int) = ceibaRepositoryLocal.getPostByUserIdFromDB(userId)
+    operator fun invoke(/*userId: Int*/) = ceibaRepositoryLocal.getPostByUserIdFromDB()
 }

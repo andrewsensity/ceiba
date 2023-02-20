@@ -1,10 +1,7 @@
 package com.andres.ceiba.domain.repositories.local
 
-import com.andres.ceiba.domain.model.post_by_user_id.PostByUserId
 import com.andres.ceiba.domain.model.post_by_user_id.PostByUserIdItem
-import com.andres.ceiba.domain.model.posts.Posts
 import com.andres.ceiba.domain.model.posts.PostsItem
-import com.andres.ceiba.domain.model.users.Users
 import com.andres.ceiba.domain.model.users.UsersItem
 import kotlinx.coroutines.flow.Flow
 
@@ -20,7 +17,7 @@ interface CeibaRepositoryLocal {
 
     fun getPostsFromDB(): Flow<List<PostsItem>?>
 
-    fun getPostByUserIdFromDB(userId: Int): Flow<List<PostByUserIdItem>?>
+    fun getPostByUserIdFromDB(): Flow<List<PostByUserIdItem>?>
 
     suspend fun deleteUsers()
 

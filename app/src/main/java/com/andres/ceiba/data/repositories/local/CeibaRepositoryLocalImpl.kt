@@ -37,8 +37,8 @@ class CeibaRepositoryLocalImpl(
         }
     }
 
-    override fun getPostByUserIdFromDB(userId: Int): Flow<List<PostByUserIdItem>?> {
-        return ceibaDao.getPostByUserIdFromDB(userId).map { postByUserIdEntity ->
+    override fun getPostByUserIdFromDB(): Flow<List<PostByUserIdItem>?> {
+        return ceibaDao.getPostByUserIdFromDB().map { postByUserIdEntity ->
             postByUserIdEntity?.toPostByUserIdList()
         }
     }

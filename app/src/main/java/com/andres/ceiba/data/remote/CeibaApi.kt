@@ -21,5 +21,5 @@ interface CeibaApi {
     @GET(POSTS)
     suspend fun getPostsByUserId(
         @Query(USER_ID) userId: Int,
-    ): List<PostByUserIdItem>
+    ): PostByUserId
 }

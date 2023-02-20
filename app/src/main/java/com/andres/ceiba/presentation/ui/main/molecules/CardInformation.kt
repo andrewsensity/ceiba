@@ -51,6 +51,7 @@ fun CardInformation(
         modifier = modifier
             .fillMaxWidth()
             .background(Color.White, RoundedCornerShape(20.dp))
+            .padding(bottom = 16.dp)
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
             Text(
@@ -83,7 +84,7 @@ fun CardInformation(
                     .padding(top = 8.dp)
                     .clickable {
                         mainViewModel.onEvent(
-                            MainEvents.OnClickPostsByUserId(id = usersItem.id)
+                            MainEvents.OnClickPostsByUserId(id = index)
                         )
                     },
                 text = stringResource(R.string.show_posts),

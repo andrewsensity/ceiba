@@ -1,6 +1,5 @@
 package com.andres.ceiba.presentation.ui.main.pages
 
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -26,16 +25,13 @@ fun MainScreen(
             TopAppBarMain()
         }
     ) { paddingValues ->
-        Column(
+        ContentMain(
             modifier = Modifier
                 .padding(paddingValues)
-                .padding(16.dp)
-        ) {
-            ContentMain(
-                navController = navController,
-                mainViewModel = mainViewModel
-            )
-        }
+                .padding(top = 10.dp, start = 16.dp, end = 16.dp),
+            navController = navController,
+            mainViewModel = mainViewModel
+        )
         CustomLoading(
             context = context,
             showProgress = mainViewModel.isLoading

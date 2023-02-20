@@ -9,7 +9,7 @@ class GetPostsByUserIdRepositoryImpl(
     private val ceibaApi: CeibaApi,
 ) : GetPostsByUserIdRepository {
 
-    override suspend fun getPostsByUserId(userId: Int): Result<List<PostByUserIdItem>> {
+    override suspend fun getPostsByUserId(userId: Int): Result<PostByUserId> {
         return try {
             val result = ceibaApi.getPostsByUserId(userId)
             Result.success(result)

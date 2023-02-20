@@ -3,6 +3,7 @@ package com.andres.ceiba.presentation.ui.main.molecules
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.slideInVertically
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -39,7 +40,6 @@ fun ListUsers(
         if (userListFiltered.isNotEmpty()) {
             itemsIndexed(userListFiltered) { index, users ->
                 CardInformation(
-                    modifier = Modifier.padding(top = 16.dp),
                     index = index,
                     usersItem = users,
                     navController = navController,

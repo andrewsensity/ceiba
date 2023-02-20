@@ -54,7 +54,7 @@ class MainViewModel @Inject constructor(
     private fun getPostsByUserId(userId: Int) {
         viewModelScope.launch {
             isLoading = true
-            ceibaUseCases.getPostsByUserIdUseCase(userId)
+            ceibaUseCases.getPostsByUserIdUseCase(userId + 1)
                 .onSuccess { postByUserId ->
                     isLoading = false
                     insertPostsByUserIdDB(postByUserId)
@@ -83,6 +83,7 @@ class MainViewModel @Inject constructor(
         ceibaUseCases.getUsersDBUseCase()
             .onEach { userItemList ->
                 if (userItemList != null) {
+                    usersDB.clear()
                     usersDB.addAll(userItemList)
                 }
             }.launchIn(viewModelScope)
@@ -91,6 +92,7 @@ class MainViewModel @Inject constructor(
     private fun getPostDB() {
         ceibaUseCases.getPostsDBUseCase().onEach { postItemsList ->
             if (postItemsList != null) {
+                postsDB.clear()
                 postsDB.addAll(postItemsList)
             }
         }.launchIn(viewModelScope)

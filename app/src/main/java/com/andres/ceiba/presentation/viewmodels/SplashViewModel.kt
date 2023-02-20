@@ -67,6 +67,7 @@ class SplashViewModel @Inject constructor(
         job = GlobalScope.launch {
             ceibaUseCases.deleteUsersUseCase()
             ceibaUseCases.insertUsersDBUseCase(list)
+
         }
     }
 
