@@ -16,6 +16,7 @@ object Constants {
     const val ZERO = 0
     const val POSTS_ITEM = "posts_item"
     const val USERS_ITEM = "users_item"
+    const val USERS_NAV = "users"
 
     const val SPLASH_SCREEN = "splash_screen"
     const val MAIN_SCREEN = "main_screen"

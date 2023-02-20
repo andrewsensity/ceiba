@@ -3,7 +3,6 @@ package com.andres.ceiba.presentation.ui.main.molecules
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.slideInVertically
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -22,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.andres.ceiba.R
 import com.andres.ceiba.data.utils.filterList
+import com.andres.ceiba.domain.model.users.Users
 import com.andres.ceiba.presentation.theme.GreenCeiba
 import com.andres.ceiba.presentation.viewmodels.MainViewModel
 
@@ -30,10 +30,10 @@ fun ListUsers(
     mainViewModel: MainViewModel,
     navController: NavController,
     searchUser: String,
+    user: Users,
 ) {
-    val usersList = mainViewModel.usersDB
     val lazyListState = rememberLazyListState()
-    val userListFiltered = usersList.filterList(searchUser.lowercase()) { usersItem ->
+    val userListFiltered = user.filterList(searchUser.lowercase()) { usersItem ->
         usersItem.name.lowercase().contains(searchUser)
     }
     LazyColumn(state = lazyListState) {

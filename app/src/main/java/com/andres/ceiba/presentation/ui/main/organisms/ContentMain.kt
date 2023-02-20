@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.andres.ceiba.R
 import com.andres.ceiba.data.utils.Constants.EMPTY
+import com.andres.ceiba.domain.model.users.Users
 import com.andres.ceiba.presentation.theme.GreenCeiba
 import com.andres.ceiba.presentation.ui.main.atoms.CustomTextField
 import com.andres.ceiba.presentation.ui.main.molecules.ListUsers
@@ -30,6 +31,7 @@ fun ContentMain(
     mainViewModel: MainViewModel,
     navController: NavController,
     modifier: Modifier,
+    user: Users,
 ) {
     val localFocusManager = LocalFocusManager.current
     val focusRequester = remember { FocusRequester() }
@@ -64,7 +66,8 @@ fun ContentMain(
         ListUsers(
             mainViewModel = mainViewModel,
             navController = navController,
-            searchUser = searchUser
+            searchUser = searchUser,
+            user = user
         )
     }
 }

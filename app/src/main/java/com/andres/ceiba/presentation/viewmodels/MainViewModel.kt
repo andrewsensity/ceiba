@@ -31,17 +31,8 @@ class MainViewModel @Inject constructor(
 ) : ViewModel() {
 
     var isLoading by mutableStateOf(false)
-    var usersDB = mutableStateListOf<UsersItem>()
-        private set
-    var postsDB = mutableStateListOf<PostsItem>()
-        private set
     private val _uiEvent = Channel<UiEventCeiba>()
     val uiEvent = _uiEvent.receiveAsFlow()
-
-    init {
-        getUserDB()
-        getPostDB()
-    }
 
     fun onEvent(event: MainEvents) {
         when (event) {
@@ -60,7 +51,7 @@ class MainViewModel @Inject constructor(
                     insertPostsByUserIdDB(postByUserId)
                     _uiEvent.send(
                         UiEventCeiba.Navigate(
-                            "${Screen.PostsScreen.route}?$USERS_ITEM=${usersDB[userId].toJson()}"
+                            Screen.PostsScreen.route
                         )
                     )
                 }.onFailure {
@@ -77,24 +68,5 @@ class MainViewModel @Inject constructor(
             ceibaUseCases.deletePostsByUserIdUseCase()
             ceibaUseCases.insertPostByUserIdDBUseCase(list)
         }
-    }
-
-    private fun getUserDB() {
-        ceibaUseCases.getUsersDBUseCase()
-            .onEach { userItemList ->
-                if (userItemList != null) {
-                    usersDB.clear()
-                    usersDB.addAll(userItemList)
-                }
-            }.launchIn(viewModelScope)
-    }
-
-    private fun getPostDB() {
-        ceibaUseCases.getPostsDBUseCase().onEach { postItemsList ->
-            if (postItemsList != null) {
-                postsDB.clear()
-                postsDB.addAll(postItemsList)
-            }
-        }.launchIn(viewModelScope)
     }
 }
