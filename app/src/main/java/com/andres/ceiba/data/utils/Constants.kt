@@ -9,7 +9,7 @@ object Constants {
     const val TABLE_USERS = "table_users"
     const val TABLE_POSTS = "table_posts"
     const val TABLE_POSTS_BY_USER_ID = "table_posts_by_user_id"
-    const val DATABASE_POKEMON = "ceiba_db"
+    const val DATABASE_CEIBA = "ceiba_db"
     const val DATABASE_VERSION = 5
 
     const val EMPTY = ""

@@ -9,7 +9,7 @@ import com.andres.ceiba.data.repositories.remote.GetPostsByUserIdRepositoryImpl
 import com.andres.ceiba.data.repositories.remote.GetPostsRepositoryImpl
 import com.andres.ceiba.data.repositories.remote.GetUsersRepositoryImpl
 import com.andres.ceiba.data.utils.Constants.BASE_URL
-import com.andres.ceiba.data.utils.Constants.DATABASE_POKEMON
+import com.andres.ceiba.data.utils.Constants.DATABASE_CEIBA
 import com.andres.ceiba.domain.repositories.local.CeibaRepositoryLocal
 import com.andres.ceiba.domain.repositories.remote.GetPostsByUserIdRepository
 import com.andres.ceiba.domain.repositories.remote.GetPostsRepository
@@ -73,7 +73,7 @@ object CeibaDataModule {
     @Singleton
     @Provides
     fun provideCeibaDatabase(@ApplicationContext context: Context): CeibaDatabase {
-        return Room.databaseBuilder(context, CeibaDatabase::class.java, DATABASE_POKEMON)
+        return Room.databaseBuilder(context, CeibaDatabase::class.java, DATABASE_CEIBA)
             .fallbackToDestructiveMigration()
             .allowMainThreadQueries()
             .build()
